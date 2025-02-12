@@ -21,9 +21,6 @@
     options = "--delete-older-than 30d";
   };
 
-  # Enable systemd-oomd for better memory management
-  services.systemd-oomd.enable = true;
-
   services.openssh.enable = true;
 
   # Bootloader

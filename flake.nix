@@ -23,7 +23,7 @@
       nixosConfigurations.r2d2xx = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./hosts/r2d2xx.nix
+          ./hosts/r2d2xx/default.nix
           home-manager.nixosModules.home-manager
         ];
       };
@@ -31,7 +31,7 @@
       nixosConfigurations.c3poxx = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./hosts/c3poxx.nix
+          ./hosts/c3poxx/default.nix
           home-manager.nixosModules.home-manager
         ];
       };

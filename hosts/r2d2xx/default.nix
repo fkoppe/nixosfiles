@@ -8,12 +8,12 @@
 
     ./hardware-configuration.nix
 
-    ../modules/common/global
+    ../common/optional/desktop/kde.nix
+    ../common/optional/bluetooth.nix
 
-    ../modules/optional/desktop/kde.nix
-    ../modules/optional/bluetooth.nix
+    ../../modules/global
 
-    ../users/koppe.nix
+    ../../users/koppe.nix
   ];
 
   networking.hostName = "r2d2xx";
@@ -29,5 +29,5 @@
   #hardware.graphics.enable = true;
 
   # Home Manager setup for user 'koppe'
-  home-manager.users.koppe = import ../home/koppe-home.nix;
+  home-manager.users.koppe = import ../../home/koppe/default.nix;
 }
