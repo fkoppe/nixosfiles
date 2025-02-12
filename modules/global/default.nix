@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
 {
+
+  imports = [
+    ./locale.nix
+    ./network.nix
+    #./packages.nix
+  ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

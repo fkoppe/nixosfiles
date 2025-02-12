@@ -13,12 +13,12 @@
   };
 
   # Enable KDE Plasma 6
-  services.xserver.desktopManager.plasma6 = {
+  services.desktopManager.plasma6 = {
     enable = true;
   };
 
   # Configure the display manager (SDDM)
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     theme = "breeze";
     wayland.enable = false;

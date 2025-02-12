@@ -5,7 +5,7 @@
     # Monitor
     sysstat
     lm_sensors
-    lspci
+    pciutils
 
     # CLI
     lsd
