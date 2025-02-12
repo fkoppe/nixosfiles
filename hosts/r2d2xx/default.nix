@@ -2,11 +2,12 @@
 
 {
   imports = [
-    #inputs.hardware.nixosModules.common-cpu-amd
-    #inputs.hardware.nixosModules.common-gpu-nvidia
-    #inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-gpu-nvidia
+    inputs.hardware.nixosModules.common-pc-ssd
 
     ./hardware-configuration.nix
+    ./grafics-configuration.nix
 
     ../common/optional/desktop/kde.nix
     ../common/optional/bluetooth.nix
@@ -26,7 +27,7 @@
     lidSwitchExternalPower = "lock";
   };
 
-  #hardware.graphics.enable = true;
+  hardware.graphics.enable = true;
 
   # Home Manager setup for user 'koppe'
   home-manager.users.koppe = import ../../home/koppe/default.nix;

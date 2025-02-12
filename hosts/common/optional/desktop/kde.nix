@@ -4,7 +4,7 @@
     # Enable the X server and specify video drivers
     services.xserver = {
         enable = true;
-        videoDrivers = [ "intel" "nvidia" "amdgpu" ];
+
         # Configure keyboard layout for X11
         xkb = {
         layout = "de";

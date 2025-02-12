@@ -14,7 +14,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hardware }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, hardware, home-manager }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
