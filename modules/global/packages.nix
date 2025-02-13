@@ -2,10 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
-    # Monitor
+    # Util
     sysstat
     lm_sensors
     pciutils
+    inetutils
 
     # CLI
     lsd
@@ -13,6 +14,11 @@
     neofetch
     wget
     mc
+
+    # ZIP
+    zip
+    unzip
+    p7zip
 
     # Devel
     git
@@ -27,10 +33,14 @@
     btop
     atop
     iotop
+    iftop
     nvtopPackages.nvidia
     nvtopPackages.amd
 
     # Format
-    nixfmt
+    nixfmt-classic
+
+    # Homemanager
+    home-manager
   ];
 }

@@ -5,6 +5,6 @@
     isNormalUser = true;
     home = "/home/koppe";
     shell = pkgs.bash;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "audio" ];
   };
 }

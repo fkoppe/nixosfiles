@@ -1,12 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: {
 
-{
-
-  imports = [
-    ./locale.nix
-    ./network.nix
-    #./packages.nix
-  ];
+  imports = [ ./locale.nix ./network.nix ./packages.nix ./sound.nix ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -17,14 +11,14 @@
   # Enable important Nix features
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;  # Optimize Nix store to save space
-    trusted-users = [ "root" "koppe" ];  # Allow user koppe to run nix commands
+    auto-optimise-store = true; # Optimize Nix store to save space
+    trusted-users = [ "root" "koppe" ]; # Allow user koppe to run nix commands
   };
 
   # Garbage collection to keep the system clean
   nix.gc = {
     automatic = true;
-    dates = "weekly";  # Run GC weekly
+    dates = "weekly"; # Run GC weekly
     options = "--delete-older-than 30d";
   };
 
