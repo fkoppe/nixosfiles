@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # Util
     sysstat
@@ -25,8 +23,8 @@
     cmake
 
     # Editor
+    nano
     vim
-    vscodium
 
     # Top
     htop
@@ -34,8 +32,6 @@
     atop
     iotop
     iftop
-    nvtopPackages.nvidia
-    nvtopPackages.amd
 
     # Format
     nixfmt-classic
