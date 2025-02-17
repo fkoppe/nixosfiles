@@ -1,13 +1,14 @@
 { config, pkgs, ... }: {
-# Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
+  # Enable X11
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  # Enable KDE Plasma 6 Desktop Environment
   services.desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
+  # Enable SDDM
+  services.displayManager.sddm.enable = true;
+
+  # Configure keymap
   services.xserver.xkb = {
     layout = "de";
     variant = "";

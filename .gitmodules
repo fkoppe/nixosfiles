@@ -1,0 +1,3 @@
+[submodule "hosts/common/optional/wallpapers"]
+	path = hosts/common/optional/wallpapers
+	url = https://github.com/fkoppe/wallpapers.git
