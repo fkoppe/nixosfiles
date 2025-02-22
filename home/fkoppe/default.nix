@@ -17,6 +17,7 @@
       "Documents"
       "Videos"
       "Trash"
+      "nixosfiles"
       #"VirtualBox VMs"
       ".gnupg"
       ".ssh"
