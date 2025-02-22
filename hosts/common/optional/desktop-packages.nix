@@ -15,5 +15,8 @@
 
     #TODO
     jetbrains.idea-community-bin
+
+    #TODO
+    qtcreator
   ];
 }

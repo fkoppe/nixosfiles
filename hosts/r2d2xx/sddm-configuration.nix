@@ -6,6 +6,4 @@ let
 in
 {
   imports = [ sddmModule ];
-
-  # Additional host-specific configurations can go here
 }

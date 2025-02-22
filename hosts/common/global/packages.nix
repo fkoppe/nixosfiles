@@ -38,5 +38,14 @@
 
     # Homemanager
     home-manager
+
+    # Java
+    jdk
+
+    # C build tools
+    cmake
+    gnumake
+    gcc
+    gdb
   ];
 }

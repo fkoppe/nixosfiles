@@ -7,7 +7,7 @@
     ../common/optional/audio.nix
     ../common/optional/desktop-packages.nix
     ../common/optional/kde.nix
-    ../common/optional/sddm.nix
+    ../common/optional/sddmBackground.nix
 
     ../../user/fkoppe.nix
   ];

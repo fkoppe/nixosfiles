@@ -1,11 +1,18 @@
-{ config, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   # Define user fkoppe
   users.users.fkoppe = {
     isNormalUser = true;
+    initialPassword = "12345";
     description = "Felix Koppe";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
   # Home Manager setup for user 'fkoppe'
-  home-manager.users.fkoppe = import ../home/fkoppe/default.nix;
+  programs.fuse.userAllowOther = true;
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "fkoppe" = import ../home/fkoppe/default.nix;
+    };
+  };
 }
