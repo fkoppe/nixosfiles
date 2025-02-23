@@ -7,6 +7,8 @@
 
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
+
+    ../common/optional/plasma.nix
   ];
 
   home.persistence."/persist/home/fkoppe" = {

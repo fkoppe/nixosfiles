@@ -17,9 +17,16 @@
       url = "github:nix-community/impermanence";
     };
 
-    # Home Manager
+    # Home manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # KDE plasma manager
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     # VsCode extensions
     nix-vscode-extensions = {
@@ -48,9 +55,16 @@
           ./hosts/r2d2xx
 
           inputs.disko.nixosModules.default
-          inputs.home-manager.nixosModules.home-manager
           inputs.impermanence.nixosModules.impermanence
-          ];
+          inputs.home-manager.nixosModules.home-manager
+
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.sharedModules = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
+          }
+        ];
       };
 
       ## Desktop
