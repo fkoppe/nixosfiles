@@ -3,9 +3,9 @@
 
   inputs = {
     # Nix ecosystem
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; #TODO
 
     # Disco
     disko = {
@@ -35,7 +35,7 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs:
+  outputs = {nixpkgs, nixpkgs-unstable, ...} @ inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -44,21 +44,21 @@
       # Laptop
       nixosConfigurations.r2d2xx = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
           inputs.disko.nixosModules.default
-          (import ./hosts/r2d2xx/disko.nix { device = "/dev/nvme0n1"; })
 
           ./hosts/r2d2xx
 
-          inputs.home-manager.nixosModules.home-manager.default
+          inputs.home-manager.nixosModules.home-manager
           inputs.impermanence.nixosModules.impermanence
           ];
       };
 
-      # Desktop
-      nixosConfigurations.c3poxx = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [ ./hosts/c3poxx home-manager.nixosModules.home-manager ];
-      };
+      ## Desktop
+      #nixosConfigurations.c3poxx = nixpkgs.lib.nixosSystem {
+      #  inherit system;
+      #  modules = [ ./hosts/c3poxx inputs.home-manager.nixosModules.home-manager ];
+      #};
     };
 }

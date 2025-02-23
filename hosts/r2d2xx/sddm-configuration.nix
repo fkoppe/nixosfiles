@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 let
-  sddmBackground = "forest.jpg";
-  sddmModule = import ../common/optional/sddm.nix { inherit config lib pkgs sddmBackground; };
+  sddmBackground = "4k/forest.jpg";
+  sddmModule = import ../common/optional/sddmBackground.nix { inherit config lib pkgs sddmBackground; };
 in
 {
   imports = [ sddmModule ];

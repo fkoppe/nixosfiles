@@ -1,4 +1,4 @@
-{ config, pkgs, vscode-extensions, ... }: {
+{ config, pkgs, inputs, ... }: {
   home.username = "fkoppe";
   home.homeDirectory = "/home/fkoppe";
 
@@ -62,15 +62,14 @@
   programs.firefox = {
     enable = true;
     profiles.fkoppe = {
-      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
-        ublock-origin
+      #extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+        #ublock-origin
         #sponsor-block
         #youtube-shorts-block
-        return-youtube-dislikes
-        proton-pass
-        proton-vpn
-      ];
-
+        #return-youtube-dislikes
+        #proton-pass
+        #proton-vpn
+      #];
     };
   };
 

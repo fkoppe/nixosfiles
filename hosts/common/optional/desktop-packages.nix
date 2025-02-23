@@ -4,9 +4,6 @@
     firefox
     librewolf
 
-    # Editor
-    vscodium
-
     # Password
     keepassxc
 

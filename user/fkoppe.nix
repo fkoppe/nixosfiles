@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, pkgs, inputs, ... }: {
   # Define user fkoppe
   users.users.fkoppe = {
     isNormalUser = true;

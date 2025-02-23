@@ -1,13 +1,13 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
   imports = [
+    ./disko.nix
     ./hardware-configuration.nix
-    ./sddm-configuration.nix
+    #./sddm-configuration.nix
 
     ../common/global
     ../common/optional/audio.nix
     ../common/optional/desktop-packages.nix
     ../common/optional/kde.nix
-    ../common/optional/sddmBackground.nix
 
     ../../user/fkoppe.nix
   ];

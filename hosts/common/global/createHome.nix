@@ -1,39 +1,37 @@
+{ config, pkgs, lib, ... }: {
 systemd.services."persist-home-create-root-paths" =
 let
-    persistentHomesRoot = "/persist";
+  persistentHomesRoot = "/persist/home"; # Define your persistent home root
 
-    listOfCommands = l.mapAttrsToList
-        (_: user:
-        let
-            userHome = l.escapeShellArg (persistentHomesRoot + user.home);
+  # Create a shell script as a single string
+  listOfCommands = builtins.concatStringsSep "\n" (lib.mapAttrsToList
+    (userName: user: ''
+      userHome="${persistentHomesRoot}/${userName}"
+      if [[ ! -d "$userHome" ]]; then
+          echo "Persistent home root folder '$userHome' not found, creating..."
+          mkdir -p --mode=0755 "$userHome"
+          chown ${user.name}:${user.group} "$userHome"
+      fi
+    '') (lib.filterAttrs (_: user: user.createHome or false) config.users.users));
 
-        in ''
-            if [[ ! -d ${userHome} ]]; then
-                echo "Persistent home root folder '${userHome}' not found, creating..."
-                mkdir -p --mode=${user.homeMode} ${userHome}
-                chown ${user.name}:${user.group} ${userHome}
-            fi
-            ''
-        )
-        (l.filterAttrs (_: user: user.createHome == true) config.users.users);
-
-    stringOfCommands = l.concatLines listOfCommands;
 in {
-    script = stringOfCommands;
-    unitConfig = {
-        Description = "Ensure users' home folders exist in the persistent filesystem";
-        PartOf = [ "local-fs.target" ];
-        # The folder creation should happen after the persistent home path is mounted.
-        After = [ "persist-home.mount" ];
-    };
+  script = ''
+    set -e  # Exit on error
+    ${listOfCommands}
+  '';
 
-    serviceConfig = {
-        Type = "oneshot";
-        StandardOutput = "journal";
-        StandardError = "journal";
-    };
+  unitConfig = {
+    Description = "Ensure users' home folders exist in the persistent filesystem";
+    PartOf = [ "local-fs.target" ];
+    After = [ "persist-home.mount" ];
+  };
 
-    # [Install]
-    wantedBy = [ "local-fs.target" ];
+  serviceConfig = {
+    Type = "oneshot";
+    StandardOutput = "journal";
+    StandardError = "journal";
+  };
 
+  wantedBy = [ "local-fs.target" ];
 };
+}
