@@ -11,29 +11,58 @@
 
   home.persistence."/persist/home/fkoppe" = {
     directories = [
+      # User data
+      "Documents"
       "Downloads"
       "Music"
       "Pictures"
-      "Documents"
       "Videos"
       "Trash"
+
+      # NixOs config
       "nixosfiles"
-      #"VirtualBox VMs"
+
       ".gnupg"
-      ".ssh"
       ".nixops"
-      ".local/share/bash" # for bash history
+
+      # SSH
+      ".ssh"
+
+      # Bash history
+      ".local/share/bash"
+
+      # Telegram
+      ".local/share/64Gram"
+
       ".local/share/keyrings"
       ".local/share/direnv"
+
+      # Browser
       ".mozilla"
       ".librewolf"
+
+      # VsCode
       ".config/Code/User"
+
+      # Tidal
+      ".config/tidal-hifi"
+
+      # KeePassXc
+      ".config/keepassxc"
+
+      # IntelliJ
+      "IdeaProjects"
+
+      # Steam
       {
         directory = ".local/share/Steam";
         method = "symlink";
       }
     ];
     files = [
+      # Password safe file
+      "safe.kdbx"
+
       ".screenrc"
     ];
     allowOther = true;
@@ -62,14 +91,12 @@
   programs.firefox = {
     enable = true;
     profiles.fkoppe = {
-      #extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
-        #ublock-origin
-        #sponsor-block
-        #youtube-shorts-block
-        #return-youtube-dislikes
-        #proton-pass
-        #proton-vpn
-      #];
+      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        ublock-origin
+        return-youtube-dislikes
+        proton-pass
+        proton-vpn
+      ];
     };
   };
 

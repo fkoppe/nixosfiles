@@ -2,7 +2,7 @@
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
-    #./sddm-configuration.nix
+    ./sddm-configuration.nix
 
     ../common/global
     ../common/optional/audio.nix

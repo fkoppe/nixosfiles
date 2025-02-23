@@ -5,7 +5,6 @@
     # Nix ecosystem
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; #TODO
 
     # Disco
     disko = {
@@ -46,10 +45,9 @@
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
-          inputs.disko.nixosModules.default
-
           ./hosts/r2d2xx
 
+          inputs.disko.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           inputs.impermanence.nixosModules.impermanence
           ];

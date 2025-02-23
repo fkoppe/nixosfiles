@@ -4,7 +4,7 @@
     isNormalUser = true;
     initialPassword = "12345";
     description = "Felix Koppe";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "audio" "networkmanager" "video" "wheel" ];
   };
 
   # Home Manager setup for user 'fkoppe'

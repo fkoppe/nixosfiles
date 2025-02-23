@@ -3,7 +3,7 @@
     ./locale.nix
     ./packages.nix
     ./persist.nix
-    ./createHome.nix
+    ./create-home.nix
   ];
 
   # Bootloader.

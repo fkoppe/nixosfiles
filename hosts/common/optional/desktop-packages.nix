@@ -7,6 +7,9 @@
     # Password
     keepassxc
 
+    # Telegram
+    _64gram
+
     #TODO
     epson-escpr2
 
