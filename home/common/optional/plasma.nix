@@ -9,7 +9,9 @@ in
 
   home.activation.restorePlasmaConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     cp ${plasmaApplets} "${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc"
+
     cp ${plasmaShellRc} "${config.xdg.configHome}/plasmashellrc"
+    chmod 644 "${config.xdg.configHome}/plasmashellrc"
   '';
 
 

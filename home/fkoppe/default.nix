@@ -125,8 +125,11 @@
     # Gruvbox theme
     jdinhlife.gruvbox
 
-    # Nix Language Support
+    # Nix-lang
     jnoortheen.nix-ide
+
+    # Zig-lang
+    ziglang.vscode-zig
   ];
   };
 
