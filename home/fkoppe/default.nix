@@ -19,6 +19,7 @@
       "Music"
       "Pictures"
       "Videos"
+      "Workspace"
       "Trash"
 
       # NixOs config
@@ -70,11 +71,10 @@
       # Password safe file
       "safe.kdbx"
 
-      # KDE taskbar pins
-      #".config/plasma-org.kde.plasma.desktop-appletsrc"
+      # KDE
+      ".local/share/user-places.xbel"
 
       ".screenrc"
-
 
       # Qt
       ".config/QtProject/QtCreator.db"
