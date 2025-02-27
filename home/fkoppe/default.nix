@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: {
+{ lib, config, pkgs, inputs, ... }: {
   home.username = "fkoppe";
   home.homeDirectory = "/home/fkoppe";
 
@@ -46,6 +46,9 @@
       # VsCode
       ".config/Code/User"
 
+      # QtCreator
+      ".config/QtProject/qtcreator"
+
       # Tidal
       ".config/tidal-hifi"
 
@@ -53,6 +56,8 @@
       ".config/keepassxc"
 
       # IntelliJ
+      ".config/JetBrains"
+      ".local/share/JetBrains"
       "IdeaProjects"
 
       # Steam
@@ -65,7 +70,15 @@
       # Password safe file
       "safe.kdbx"
 
+      # KDE taskbar pins
+      #".config/plasma-org.kde.plasma.desktop-appletsrc"
+
       ".screenrc"
+
+
+      # Qt
+      ".config/QtProject/QtCreator.db"
+      ".config/QtProject/QtCreator.ini"
     ];
     allowOther = true;
   };
@@ -102,16 +115,8 @@
     };
   };
 
-
-
-  # TODO
-  programs.ssh.extraConfig = "
-
-    Host github.com
-      IdentityFile ~/.ssh/id_github_fkoppe
-  ";
-
-
+  # SSH key config file
+  home.file.".ssh/config".source = ./dotfiles/config;
 
   # TODO
   programs.vscode = {

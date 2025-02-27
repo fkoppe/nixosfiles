@@ -1,7 +1,21 @@
-{...}:
+{ lib, config, pkgs, inputs, ... }:
+let
+  plasmaApplets = ./dotfiles/plasma-org.kde.plasma.desktop-appletsrc;
+  plasmaShellRc = ./dotfiles/plasmashellrc;
+in
 {
+  qt.enable = true;
+  qt.style.name = "breeze-dark";
+
+  home.activation.restorePlasmaConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    cp ${plasmaApplets} "${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc"
+    cp ${plasmaShellRc} "${config.xdg.configHome}/plasmashellrc"
+  '';
+
+
   programs.plasma = {
     enable = true;
+    workspace.wallpaper = "/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/rails.jpg";
     shortcuts = {
       "ActivityManager"."switch-to-activity-6e576119-070d-40fe-9e15-44c62892bf99" = [ ];
       "KDE Keyboard Layout Switcher"."Switch to Last-Used Keyboard Layout" = "Meta+Alt+L";
@@ -262,6 +276,7 @@
       "katerc"."filetree"."sortRole" = 0;
       "katerc"."filetree"."viewShade" = "211,190,222";
       "kded5rc"."Module-device_automounter"."autoload" = false;
+      "kdeglobals"."KDE"."LookAndFeelPackage" = "org.kde.breezedark.desktop";
       "kdeglobals"."KDE"."SingleClick" = true;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
@@ -297,6 +312,8 @@
       "kwinrc"."Tiling/fcf1d2a2-ff1d-5715-9cc2-eeb49f538120"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
       "kwinrc"."Xwayland"."Scale" = 1;
       "plasma-localerc"."Formats"."LANG" = "en_US.UTF-8";
+      "plasma-org.kde.plasma.desktop-appletsrc"."[Containments][2][Applets][5][Configuration][General]"."favoritesPortedToKAstats" = "true";
+      "plasma-org.kde.plasma.desktop-appletsrc"."[Containments][2][Applets][5][Configuration][General]"."launchers" = "applications:systemsettings.desktop,applications:org.kde.konsole.desktop,preferred://filemanager,applications:librewolf.desktop,applications:org.kde.kate.desktop,applications:tidal-hifi.desktop,applications:org.qt-project.qtcreator.desktop,applications:org.keepassxc.KeePassXC.desktop,applications:firefox.desktop";
       "plasmarc"."Wallpapers"."usersWallpapers" = "/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/2k/forest_gray.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/blossom.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/flower_mir.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/flower.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/forest_dark.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/forest_fog.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/forest_mir.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/forest_sun.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/forest.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/leaves_dark.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/leaves_green.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/leaves.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/newyork.png,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/rails.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/river.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/winter_forest.jpg,/home/fkoppe/nixosfiles/hosts/common/optional/wallpapers/4k/winter_mountain.jpg";
     };
     dataFile = {
